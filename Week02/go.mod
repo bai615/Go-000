@@ -1,4 +1,4 @@
-module Go-000/Week02
+module github.com/bai615/Go-000/Week02
 
 go 1.15
 

@@ -1,4 +1,4 @@
-﻿package main
+package main
 
 import (
 	"fmt"
@@ -7,7 +7,12 @@ import (
 
 func main() {
 	err := Biz()
-	fmt.Printf("service: %+v\n", err)
+	if err != nil {
+		// 捕获错误，进行相应处理
+		fmt.Printf(err.Error())
+	}
+	// 输出错误及堆栈信息
+	//fmt.Printf("service: %+v\n", err)
 }
 
 type user struct {
@@ -18,7 +23,8 @@ type user struct {
 
 var ErrNotFound = errors.New("Record not found!")
 
-func Dao() (error) {
+func Dao() error {
+	// 向上抛出错误
 	return errors.Wrap(ErrNotFound, "SQL failed query!")
 }
 
@@ -29,10 +35,12 @@ func Biz() error {
 
 	err := Dao()
 	if err != nil {
+		// 向上抛出错误
 		return err
 	}
 
 	if u.age < 18 {
+		// 向上抛出错误
 		return errors.Wrap(ErrNotWork, "")
 	}
 	return nil
