@@ -1,0 +1,17 @@
+syntax = "proto3";
+option go_package = ".;article";
+service article {
+  rpc GetArticleById (Id) returns (ArticleInfo) {};
+}
+
+message Id {
+  int32 id = 1;
+}
+
+message ArticleInfo {
+  int32 id = 1;
+  string title = 2;
+  string body = 3;
+  int32 user_id = 4;
+  string user_name = 5;
+}
